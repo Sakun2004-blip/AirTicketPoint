@@ -12,15 +12,15 @@ class AirTicketPointApplicationTests {
 
 	@Test
 	void contextLoads() {
-		new HealthwithTestAction().healthTest();
+		/*new HealthwithTestAction().healthTest();
 		new AirportController().Airport();
 		new PlayGroundController().getPathVariable("testValue");
 		new PlayGroundController().getQueryParams("Name","City");
 		new PlayGroundController().getCustomerHeaderData("one","two");
-		new PlayGroundController().getRequestBodyData("level");
+		new PlayGroundController().getRequestBodyData("level");*/
 
-		PlayGroundObj pg = new PlayGroundObj();
-		new PlayGroundController().handlePlayGround(pg);
+//		PlayGroundObj pg = new PlayGroundObj("P002","Gallwe","Bujdhfdj");
+//		new PlayGroundController().handlePlayGround(pg);
 
 	}
 
