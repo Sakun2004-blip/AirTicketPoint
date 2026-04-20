@@ -1,6 +1,9 @@
 package lk.ijse.cmjd112.AirTicketPoint.controller;
 
-import lk.ijse.cmjd112.AirTicketPoint.dto.PlayGroundObj;
+import lk.ijse.cmjd112.AirTicketPoint.dto.PlayGroundObjDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,10 +31,16 @@ public class PlayGroundController {
 
     }
 
-    @PostMapping("/Play")
-    public PlayGroundObj handlePlayGround(@RequestBody  PlayGroundObj playGroundObj){
+    @PostMapping(value = "/Play",consumes = "application/json",produces = MediaType.APPLICATION_JSON_VALUE)
+    public PlayGroundObjDTO handlePlayGround(@RequestBody PlayGroundObjDTO playGroundObj){
             System.out.println("PlayGround is :"+playGroundObj);
             return playGroundObj;
+    }
+
+    @PostMapping(value = "/formal",consumes = "application/json",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PlayGroundObjDTO>handlePlayGroundFormal(@RequestBody PlayGroundObjDTO playGroundObj){
+        System.out.println("PlayGround is :"+playGroundObj);
+        return new ResponseEntity<>(playGroundObj, HttpStatus.CREATED);
     }
 
 }
