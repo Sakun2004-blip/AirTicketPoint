@@ -42,4 +42,18 @@ public class AirportController {
         );
         return new ResponseEntity<>(airportList,HttpStatus.OK);
     }
+
+    @DeleteMapping("/{airportID}")
+    public ResponseEntity<Void>deleteAirportData(@PathVariable("airportID") String airportIDentifier){
+        System.out.println("Deleted Airport:"+airportIDentifier);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PatchMapping(value = "/{airportID}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> updateAirportData(@PathVariable ("airportID") String airportIdentifier,@RequestBody AirportDTO updatedairport){
+        updatedairport.setAirportID(airportIdentifier);
+        System.out.println("Update Airport ID:"+airportIdentifier);
+        System.out.println("Updated Airport details:"+updatedairport);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
