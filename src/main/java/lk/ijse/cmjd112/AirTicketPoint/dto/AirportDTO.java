@@ -17,5 +17,6 @@ public class AirportDTO implements Serializable {
     private String Country;
 
     public void setAirportID(String s) {
+        this.airportID=s;
     }
 }
