@@ -7,4 +7,7 @@ public class IDGenerator {
     public static String airportIDGen(){
         return "API."+ UUID.randomUUID();
     }
+    public static String userIDGen(){
+        return "USR"+UUID.randomUUID();
+    }
 }

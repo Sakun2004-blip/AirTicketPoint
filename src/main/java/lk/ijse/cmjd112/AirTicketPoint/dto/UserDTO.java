@@ -16,4 +16,9 @@ public class UserDTO implements Serializable {
     private String email;
     private String password;
     private Role role;
+
+
+    public void setUser_Id(String s) {
+        this.User_Id=s;
+    }
 }
