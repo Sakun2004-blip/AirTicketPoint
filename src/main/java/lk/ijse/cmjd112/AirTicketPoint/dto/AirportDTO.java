@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Data
 public class AirportDTO implements Serializable {
@@ -16,7 +16,17 @@ public class AirportDTO implements Serializable {
     private String City;
     private String Country;
 
+    public AirportDTO(String airportID, String airportCode, String airportName, String city, String country) {
+        this.airportID = airportID;
+        this.airportCode = airportCode;
+        this.airportName = airportName;
+        this.City = city;
+        this.Country = country;
+    }
+
     public void setAirportID(String s) {
         this.airportID=s;
     }
 }
+
+
