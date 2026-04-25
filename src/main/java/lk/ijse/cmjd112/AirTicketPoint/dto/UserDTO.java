@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
 public class UserDTO implements Serializable {
-    private String User_Id;
+    private String userId;
     private String firstName;
     private String lastname;
     private String email;
@@ -18,7 +17,7 @@ public class UserDTO implements Serializable {
     private Role role;
 
 
-    public void setUser_Id(String s) {
-        this.User_Id=s;
+    public void setuserId(String s) {
+        this.userId=s;
     }
 }

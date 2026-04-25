@@ -16,7 +16,7 @@ public class UserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO user) {
-        user.setUser_Id(IDGenerator.userIDGen());
+        user.setuserId(IDGenerator.userIDGen());
         System.out.println("User is:" + user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
