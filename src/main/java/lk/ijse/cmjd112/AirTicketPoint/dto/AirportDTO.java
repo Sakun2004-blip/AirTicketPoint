@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class AirportDTO implements Serializable {
