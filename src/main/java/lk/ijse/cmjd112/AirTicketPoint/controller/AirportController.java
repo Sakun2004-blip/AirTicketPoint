@@ -37,15 +37,13 @@ public class AirportController {
         List<AirportDTO>airportList=List.of(new AirportDTO("API.9d59723c-efc5-448a-bc81-cf31e2fcf83c","CMB","Bandaranayaka International Airport","Katunayaka","Sri Lanka"),
         new AirportDTO("KLH","CMB","Koggala National Airport","Koggala","Sri Lanka"),
         new AirportDTO("MLH","CMB","Mattala International Airport","Hambantota","Sri Lanka"),
-        new AirportDTO("RLH","CMB","Rathmalana National Airport","Rathmalana","Sri Lanka")
-
-        );
+        new AirportDTO("RLH","CMB","Rathmalana National Airport","Rathmalana","Sri Lanka"));
         return new ResponseEntity<>(airportList,HttpStatus.OK);
     }
 
     @DeleteMapping("/{airportID}")
-    public ResponseEntity<Void>deleteAirportData(@PathVariable("airportID") String airportIDentifier){
-        System.out.println("Deleted Airport:"+airportIDentifier);
+    public ResponseEntity<Void>deleteAirportData(@PathVariable("airportID") String airportIdentifier){
+        System.out.println("Deleted Airport:"+airportIdentifier);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
