@@ -38,11 +38,7 @@ public class AirportController {
 
     @GetMapping(value = "/{airportId}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AirportDTO> getAirport(@PathVariable("airportId") String airportIdentifier){
-        System.out.println("Airport ID is"+airportIdentifier);
-       var airport=new AirportDTO("API.9d59723c-efc5-448a-bc81-cf31e2fcf83c",
-                "CMB","Bandaranayaka International Airport","Katunayaka","Sri Lanka");
-
-        return new ResponseEntity<>(airport,HttpStatus.OK);
+        return new ResponseEntity<>(airportService.getSelectedAirport(airportIdentifier),HttpStatus.OK);
 
 
     }
@@ -55,15 +51,13 @@ public class AirportController {
 
     @DeleteMapping("/{airportID}")
     public ResponseEntity<Void>deleteAirportData(@PathVariable("airportID") String airportIdentifier){
-        System.out.println("Deleted Airport:"+airportIdentifier);
+        airportService.deleteAirport(airportIdentifier);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PatchMapping(value = "/{airportID}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateAirportData(@PathVariable ("airportID") String airportIdentifier,@RequestBody AirportDTO updatedairport){
-        updatedairport.setAirportID(airportIdentifier);
-        System.out.println("Update Airport ID:"+airportIdentifier);
-        System.out.println("Updated Airport details:"+updatedairport);
+        airportService.updateAirport(airportIdentifier,updatedairport);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

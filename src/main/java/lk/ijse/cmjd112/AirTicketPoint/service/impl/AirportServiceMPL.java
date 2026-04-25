@@ -19,9 +19,11 @@ public class AirportServiceMPL implements AirportService {
 
     @Override
     public AirportDTO getSelectedAirport(String airportId) {
-           return null;
-    }
-
+        System.out.println("Airport ID is"+airportId)
+        var airport=new AirportDTO("API.9d59723c-efc5-448a-bc81-cf31e2fcf83c",
+                "CMB","Bandaranayaka International Airport","Katunayaka","Sri Lanka");
+return airport;
+}
     @Override
     public List<AirportDTO> getAllAirports() {
        List<AirportDTO>airportList=List.of(
@@ -35,11 +37,13 @@ public class AirportServiceMPL implements AirportService {
 
     @Override
     public void deleteAirport(String airportId) {
-
+        System.out.println("Deleted Airport:"+airportId);
     }
 
     @Override
     public void updateAirport(String airportId, AirportDTO airportDTO) {
-
+        airportDTO.setAirportID(airportId);
+        System.out.println("Update Airport ID:"+airportId);
+        System.out.println("Updated Airport details:"+airportDTO);
     }
 }
