@@ -2,7 +2,9 @@ package lk.ijse.cmjd112.AirTicketPoint.controller;
 
 import lk.ijse.cmjd112.AirTicketPoint.dto.Role;
 import lk.ijse.cmjd112.AirTicketPoint.dto.UserDTO;
+import lk.ijse.cmjd112.AirTicketPoint.service.UserService;
 import lk.ijse.cmjd112.AirTicketPoint.util.IDGenerator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +14,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Users")
+@RequiredArgsConstructor
 public class UserController {
+    private UserService userService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO user) {
-        user.setuserId(IDGenerator.userIDGen());
-        System.out.println("User is:" + user);
+
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
