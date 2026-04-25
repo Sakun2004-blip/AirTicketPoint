@@ -1,0 +1,12 @@
+package lk.ijse.cmjd112.AirTicketPoint.service;
+
+import lk.ijse.cmjd112.AirTicketPoint.dto.UserDTO;
+
+import java.util.List;
+
+public interface UserService {
+    UserDTO saveUser(UserDTO userDTO);
+    List<UserDTO>getAllUsers();
+    void deleteUser(String userId);
+    void updateUser(String userId,UserDTO userDTO);
+}
