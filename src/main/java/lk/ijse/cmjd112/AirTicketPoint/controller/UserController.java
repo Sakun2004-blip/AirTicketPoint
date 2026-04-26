@@ -16,43 +16,32 @@ import java.util.List;
 @RequestMapping("/Users")
 @RequiredArgsConstructor
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO user) {
-
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> getSelectedUser(@PathVariable("id") String User_Id) {
-        System.out.println("User Id is:" + User_Id);
-        var UserDTO = new UserDTO(User_Id, "Kamal", "Silva", "kamal@gmail.com", "kamal55", Role.ADMIN);
-        return new ResponseEntity<>(UserDTO, HttpStatus.OK);
+        return new ResponseEntity<>(userService.getSelectedUser(User_Id), HttpStatus.OK);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> allUsers = List.of(
-                new UserDTO("KLH.9d59723c-efc5-448a-bc81-cf31e2fcf83c", "Amal", "Perera", "amalperera@gamil.com", "Amal555", Role.ADMIN),
-                new UserDTO("MLH.9d59723c-efc5-448a-bc81-cf31e2fcf83c", "Nimal", "Perera", "nimalperera@gamil.com", "Nimal555", Role.ADMIN),
-                new UserDTO("GLH.9d59723c-efc5-448a-bc81-cf31e2fcf83c", "Sunimal", "Perera", "sunimalperera@gamil.com", "Sunimal555", Role.USER),
-                new UserDTO("KLH.9d59723c-efc5-448a-bc81-cf31e2fcf83c", "Bimal", "Perera", "bimalperera@gamil.com", "bimal555", Role.USER)
-
-        );
-        return new ResponseEntity<>(allUsers, HttpStatus.OK);
+        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable("id") String User_Id) {
-        System.out.println("Deleted User Id is:" + User_Id);
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") String userId) {
+        userService.deleteUser(userId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PatchMapping(value = "/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void>updateUser(@PathVariable ("id")String User_Id,@RequestBody UserDTO UpdateUser){
-        System.out.println("User Id is:"+User_Id);
-        System.out.println("Updated user is:"+UpdateUser);
+    public ResponseEntity<Void>updateUser(@PathVariable ("id")String userId,@RequestBody UserDTO UpdateUser){
+        userService.updateUser(userId,UpdateUser);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 

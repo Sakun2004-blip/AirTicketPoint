@@ -19,7 +19,7 @@ public class AirportServiceMPL implements AirportService {
 
     @Override
     public AirportDTO getSelectedAirport(String airportId) {
-        System.out.println("Airport ID is"+airportId)
+        System.out.println("Airport ID is"+airportId);
         var airport=new AirportDTO("API.9d59723c-efc5-448a-bc81-cf31e2fcf83c",
                 "CMB","Bandaranayaka International Airport","Katunayaka","Sri Lanka");
 return airport;
