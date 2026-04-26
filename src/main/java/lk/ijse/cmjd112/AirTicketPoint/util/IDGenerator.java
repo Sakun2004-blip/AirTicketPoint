@@ -10,4 +10,7 @@ public class IDGenerator {
     public static String userIDGen(){
         return "USR"+UUID.randomUUID();
     }
+    public static String bookingIDGen(){
+        return "BKG"+UUID.randomUUID();
+    }
 }
