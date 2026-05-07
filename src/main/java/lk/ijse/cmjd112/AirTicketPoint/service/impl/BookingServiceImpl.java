@@ -3,6 +3,7 @@ package lk.ijse.cmjd112.AirTicketPoint.service.impl;
 import lk.ijse.cmjd112.AirTicketPoint.dto.BookingDTO;
 import lk.ijse.cmjd112.AirTicketPoint.dto.BookingStatus;
 import lk.ijse.cmjd112.AirTicketPoint.service.BookingService;
+import lk.ijse.cmjd112.AirTicketPoint.util.DateTimeUtil;
 import lk.ijse.cmjd112.AirTicketPoint.util.IDGenerator;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public BookingDTO saveBooking(BookingDTO bookingDTO) {
         bookingDTO.setBookingId(IDGenerator.bookingIDGen());
+        bookingDTO.setBookingDateTime(
+                bookingDTO.getBookingDateTime() == null ? DateTimeUtil.currentTime() : bookingDTO.getBookingDateTime());
         System.out.println("Booking is: " + bookingDTO);
         return bookingDTO;
     }
