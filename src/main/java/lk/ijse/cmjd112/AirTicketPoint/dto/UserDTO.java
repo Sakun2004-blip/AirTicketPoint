@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class UserDTO implements Serializable {
     private String userId;

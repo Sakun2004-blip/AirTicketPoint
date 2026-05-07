@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class AirportDTO implements Serializable {
     private String airportID;
