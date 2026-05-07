@@ -12,8 +12,11 @@ import java.time.LocalDateTime;
 @Data
 public class BookingDTO implements Serializable {
     private String bookingId;
-    private String fullName;
-    private String email;
-    private String Password;
-   
+    private String reference;
+    private LocalDateTime bookingDateTime;
+    private int seatCount;
+    private double totalAmount;
+    private BookingStatus bookingStatus;
+    private String userId;
+    private String flightId;
 }
