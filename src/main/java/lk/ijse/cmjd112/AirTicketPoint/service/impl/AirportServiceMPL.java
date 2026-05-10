@@ -35,13 +35,7 @@ public class AirportServiceMPL implements AirportService {
 }
     @Override
     public List<AirportDTO> getAllAirports() {
-       List<AirportDTO>airportList=List.of(
-                new AirportDTO("API.9d59723c-efc5-448a-bc81-cf31e2fcf83c","CMB","Bandaranayaka International Airport","Katunayaka","Sri Lanka"),
-                new AirportDTO("KLH","CMB","Koggala National Airport","Koggala","Sri Lanka"),
-                new AirportDTO("MLH","CMB","Mattala International Airport","Hambantota","Sri Lanka"),
-                new AirportDTO("RLH","CMB","Rathmalana National Airport","Rathmalana","Sri Lanka")
-        );
-        return airportList;
+       return mappingDTOEntity.getAirportDTO(airportDao.findAll());
     }
 
     @Override
