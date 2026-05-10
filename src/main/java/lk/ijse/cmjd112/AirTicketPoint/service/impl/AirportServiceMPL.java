@@ -3,6 +3,7 @@ package lk.ijse.cmjd112.AirTicketPoint.service.impl;
 import jakarta.transaction.Transactional;
 import lk.ijse.cmjd112.AirTicketPoint.Dao.AirportDao;
 import lk.ijse.cmjd112.AirTicketPoint.dto.AirportDTO;
+import lk.ijse.cmjd112.AirTicketPoint.exception.DataNotFoundException;
 import lk.ijse.cmjd112.AirTicketPoint.service.AirportService;
 import lk.ijse.cmjd112.AirTicketPoint.util.IDGenerator;
 import lk.ijse.cmjd112.AirTicketPoint.util.MappingDTOEntity;
@@ -44,14 +45,14 @@ public class AirportServiceMPL implements AirportService {
         var airport = airportDao.findById(airportId)
                 .orElseThrow(() -> {
                     System.out.println("Airport not found with ID: " + airportId);
-                    return new RuntimeException("Airport with ID: " + airportId + " not found");
+                    return new DataNotFoundException("Airport with ID: " + airportId + " not found");
                 });
         try {
             airportDao.delete(airport);
             System.out.println("Airport deleted successfully: " + airportId);
         } catch (Exception e) {
             System.out.println("Error deleting airport: " + e.getMessage());
-            throw new RuntimeException("Cannot delete airport. It may be referenced by other records.", e);
+            throw new DataNotFoundException("Cannot delete airport. It may be referenced by other records.", e);
         }
     }
 
