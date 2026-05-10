@@ -30,10 +30,10 @@ public class AirportController {
      //Create an Airport
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AirportDTO> saveAirport(@RequestBody AirportDTO airportDTO){
+    public ResponseEntity<Void> saveAirport(@RequestBody AirportDTO airportDTO){
       // var airportServiceMPL=new AirportServiceMPL();
        var savedAirport=airportService.saveAirport(airportDTO);
-       return new ResponseEntity<>(savedAirport,HttpStatus.CREATED);
+       return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{airportId}",produces = MediaType.APPLICATION_JSON_VALUE)
