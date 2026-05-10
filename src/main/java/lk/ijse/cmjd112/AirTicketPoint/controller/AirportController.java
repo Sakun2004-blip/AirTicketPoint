@@ -18,10 +18,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AirportController {
     //Field Injection
-    @Autowired
+    //@Autowired
    //private AirportService airportService;
 
-    private AirportService airportService;
+    private final AirportService airportService;
     //Constructor injection=support with lombok=@RequiredArgsConstructor
     //public AirportController(AirportService airportService){
     //   this.airportService=airportService;
