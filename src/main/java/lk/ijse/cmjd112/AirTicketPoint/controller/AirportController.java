@@ -49,10 +49,14 @@ public class AirportController {
 
     }
 
-    @DeleteMapping("/{airportID}")
-    public ResponseEntity<Void>deleteAirportData(@PathVariable("airportID") String airportIdentifier){
-        airportService.deleteAirport(airportIdentifier);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @DeleteMapping(value = "/{airportId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> deleteAirportData(@PathVariable("airportId") String airportIdentifier){
+        try {
+            airportService.deleteAirport(airportIdentifier);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PatchMapping(value = "/{airportID}", consumes = MediaType.APPLICATION_JSON_VALUE)

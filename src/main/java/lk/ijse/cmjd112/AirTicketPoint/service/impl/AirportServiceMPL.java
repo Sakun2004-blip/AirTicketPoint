@@ -40,13 +40,30 @@ public class AirportServiceMPL implements AirportService {
 
     @Override
     public void deleteAirport(String airportId) {
-        System.out.println("Deleted Airport:"+airportId);
+        System.out.println("Attempting to delete airport with ID: " + airportId);
+        var airport = airportDao.findById(airportId)
+                .orElseThrow(() -> {
+                    System.out.println("Airport not found with ID: " + airportId);
+                    return new RuntimeException("Airport with ID: " + airportId + " not found");
+                });
+        try {
+            airportDao.delete(airport);
+            System.out.println("Airport deleted successfully: " + airportId);
+        } catch (Exception e) {
+            System.out.println("Error deleting airport: " + e.getMessage());
+            throw new RuntimeException("Cannot delete airport. It may be referenced by other records.", e);
+        }
     }
 
     @Override
     public void updateAirport(String airportId, AirportDTO airportDTO) {
+        System.out.println("Attempting to update airport with ID: " + airportId);
+        airportDao.findById(airportId)
+                .orElseThrow(() -> new RuntimeException("Airport with ID: " + airportId + " not found"));
+        
         airportDTO.setAirportID(airportId);
-        System.out.println("Update Airport ID:"+airportId);
-        System.out.println("Updated Airport details:"+airportDTO);
+        var updatedAirport = mappingDTOEntity.toAirportEntity(airportDTO);
+        airportDao.save(updatedAirport);
+        System.out.println("Airport updated successfully: " + airportId);
     }
 }
