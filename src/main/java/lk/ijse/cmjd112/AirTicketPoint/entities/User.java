@@ -26,5 +26,5 @@ public class User implements Serializable {
     private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Bookings>bookings
+    private List<Bookings>bookings;
 }

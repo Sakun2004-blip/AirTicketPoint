@@ -29,5 +29,5 @@ public class Bookings implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="flight_Id")
-    private  flightId;
+    private Flight flightId;
 }
