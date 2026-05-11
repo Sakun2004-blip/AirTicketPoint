@@ -1,0 +1,32 @@
+package lk.ijse.cmjd112.AirTicketPoint.entities;
+
+import jakarta.persistence.*;
+import lk.ijse.cmjd112.AirTicketPoint.dto.FlightStatus;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Entity
+@Table(name="flights")
+public class Flight {
+    @Id
+    private String flightId;
+    private String flightNO;
+    private LocalDateTime departureTime;
+    private LocalDateTime arrivalTime;
+    private int totalSeats;
+    private int avaliableSeats;
+    private double basefare;
+    @Enumerated(EnumType.ORDINAL)
+    private FlightStatus status;
+    @JoinColumn(name="dep_airport")
+    private String deapartureAirportID;
+    @JoinColumn(name="arr_airport")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private String arrivalAirportId;
+}
