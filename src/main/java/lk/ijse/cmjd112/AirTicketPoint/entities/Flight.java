@@ -24,9 +24,12 @@ public class Flight {
     private double basefare;
     @Enumerated(EnumType.ORDINAL)
     private FlightStatus status;
-    @JoinColumn(name="dep_airport")
-    private String deapartureAirportID;
-    @JoinColumn(name="arr_airport")
+    
     @ManyToOne(fetch = FetchType.LAZY)
-    private String arrivalAirportId;
+    @JoinColumn(name="dep_airport") // Foreign key column name in the 'flights' table
+    private Airport departureAirport; // Reference to the Airport entity
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="arr_airport") // Foreign key column name in the 'flights' table
+    private Airport arrivalAirport; // Reference to the Airport entity
 }

@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 @Entity
-@Table("passenger")
+@Table(name = "passenger")
 public class Passenger implements Serializable {
     @Id
     private String passengerId;
@@ -22,6 +22,6 @@ public class Passenger implements Serializable {
     private String contactNumber;
     private String seatNumber;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "booking_id")
-    private String bookingId;
+    @JoinColumn(name = "booking_id") // Foreign key column name in the 'passenger' table
+    private Bookings booking; // Reference to the Bookings entity
 }
