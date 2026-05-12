@@ -42,7 +42,8 @@ public class UserServiceMPL implements UserService {
 
     @Override
     public void deleteUser(String userId) {
-        System.out.println("Deleted User Id is:" + userId);
+      userDao.findById(userId).orElseThrow(()->new DataNotFoundException("user not Found"));
+      userDao.deleteById(userId);
 
     }
 
