@@ -1,38 +1,42 @@
 package lk.ijse.cmjd112.AirTicketPoint.service.impl;
 
+import jakarta.transaction.Transactional;
+import lk.ijse.cmjd112.AirTicketPoint.Dao.UserDao;
 import lk.ijse.cmjd112.AirTicketPoint.dto.Role;
 import lk.ijse.cmjd112.AirTicketPoint.dto.UserDTO;
+import lk.ijse.cmjd112.AirTicketPoint.exception.DataNotFoundException;
 import lk.ijse.cmjd112.AirTicketPoint.service.UserService;
 import lk.ijse.cmjd112.AirTicketPoint.util.IDGenerator;
+import lk.ijse.cmjd112.AirTicketPoint.util.MappingDTOEntity;
+import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class UserServiceMPL implements UserService {
+
+    private final UserDao userDao;
+    private final MappingDTOEntity mappingDTOEntity;
     @Override
-    public UserDTO saveUser(UserDTO userDTO) {
+    public void saveUser(UserDTO userDTO) {
         userDTO.setuserId(IDGenerator.userIDGen());
-        System.out.println("User is:" + userDTO);
-        return userDTO;
+        userDao.save(mappingDTOEntity.touser(userDTO));
+
     }
 
     public UserDTO getSelectedUser(String userId){
-        System.out.println("User Id is:" + userId);
-        var userDTO = new UserDTO(userId, "Kamal", "Silva", "kamal@gmail.com", "kamal55", Role.ADMIN);
+       var foundUser=userDao.findById(userId).orElseThrow(()->new DataNotFoundException("User Not Found"));
+       return mappingDTOEntity.touserDTO(foundUser);
 
-        return userDTO;
     }
-
+    
     @Override
     public List<UserDTO> getAllUsers() {
-        return  List.of(
-                new UserDTO("KLH.9d59723c-efc5-448a-bc81-cf31e2fcf83c", "Amal", "Perera", "amalperera@gamil.com", "Amal555", Role.ADMIN),
-                new UserDTO("MLH.9d59723c-efc5-448a-bc81-cf31e2fcf83c", "Nimal", "Perera", "nimalperera@gamil.com", "Nimal555", Role.ADMIN),
-                new UserDTO("GLH.9d59723c-efc5-448a-bc81-cf31e2fcf83c", "Sunimal", "Perera", "sunimalperera@gamil.com", "Sunimal555", Role.USER),
-                new UserDTO("KLH.9d59723c-efc5-448a-bc81-cf31e2fcf83c", "Bimal", "Perera", "bimalperera@gamil.com", "bimal555", Role.USER)
-
-        );
+       return mappingDTOEntity.getUserDTOList(userDao.findAll());
 
     }
 
