@@ -49,9 +49,13 @@ public class UserServiceMPL implements UserService {
 
     @Override
     public void updateUser(String userId, UserDTO userDTO) {
-        userDTO.setuserId(userId);
-        System.out.println("User Id is: " + userId);
-        System.out.println("Updated user is: " + userDTO);
+        var founduser=userDao.findById(userId).orElseThrow(()->new DataNotFoundException("Data Not Found"));
 
+        founduser.setEmail(userDTO.getEmail());
+        founduser.setRole(userDTO.getRole());
+        founduser.setFirstName(userDTO.getFirstName());
+        founduser.setLastname(userDTO.getLastname());
+        
+        userDao.save(founduser);
     }
 }
