@@ -35,8 +35,7 @@ public class MappingDTOEntity {
     public User touser(UserDTO userDTO){
         return modelMapper.map(userDTO, User.class);
     }
-    public List<UserDTO> getuserDTO(List<Airport> user){
-        return modelMapper.map(user, new TypeToken<List<AirportDTO>>(){}.getType());
+    public List<UserDTO> getUserDTOList(List<User> users){
+        return modelMapper.map(users, new TypeToken<List<UserDTO>>(){}.getType());
     }
-
 }
