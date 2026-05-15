@@ -1,21 +1,30 @@
 package lk.ijse.cmjd112.AirTicketPoint.service.impl;
 
+import lk.ijse.cmjd112.AirTicketPoint.Dao.AirportDao;
+import lk.ijse.cmjd112.AirTicketPoint.Dao.FlightDao;
 import lk.ijse.cmjd112.AirTicketPoint.dto.FlightDTO;
 import lk.ijse.cmjd112.AirTicketPoint.dto.FlightStatus;
 import lk.ijse.cmjd112.AirTicketPoint.service.FlightService;
 import lk.ijse.cmjd112.AirTicketPoint.util.IDGenerator;
+import lk.ijse.cmjd112.AirTicketPoint.util.MappingDTOEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class FlightServiceImpl implements FlightService {
+    private final FlightDao flightDao;
+    private final MappingDTOEntity mappingDTOEntity;
+    private final AirportDao airportDao;
 
     @Override
     public FlightDTO saveFlight(FlightDTO flightDTO) {
         flightDTO.setFlightId(IDGenerator.flightIDGen());
-        System.out.println("Flight is from service layer: " + flightDTO);
+
+        airportDao.findById(flightDTO.getArrivalAirportId());
         return flightDTO;
     }
 
