@@ -19,14 +19,6 @@ public class FlightDTO implements Serializable {
     private int avaliableSeats;
     private double basefare;
     private FlightStatus status;
-    private String deapartureAirportID;
+    private String departureAirportId;
     private String arrivalAirportId;
-
-    public String getFlightId() {
-        return flightId;
-    }
-
-    public void setFlightId(String flightId) {
-        this.flightId = flightId;
-    }
 }

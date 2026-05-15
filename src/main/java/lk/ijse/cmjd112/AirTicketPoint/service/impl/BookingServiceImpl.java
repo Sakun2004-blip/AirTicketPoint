@@ -1,10 +1,13 @@
 package lk.ijse.cmjd112.AirTicketPoint.service.impl;
 
+import lk.ijse.cmjd112.AirTicketPoint.Dao.BookingDao;
+import lk.ijse.cmjd112.AirTicketPoint.Dao.UserDao;
 import lk.ijse.cmjd112.AirTicketPoint.dto.BookingDTO;
 import lk.ijse.cmjd112.AirTicketPoint.dto.BookingStatus;
 import lk.ijse.cmjd112.AirTicketPoint.service.BookingService;
 import lk.ijse.cmjd112.AirTicketPoint.util.DateTimeUtil;
 import lk.ijse.cmjd112.AirTicketPoint.util.IDGenerator;
+import lk.ijse.cmjd112.AirTicketPoint.util.MappingDTOEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -12,13 +15,16 @@ import java.util.List;
 
 @Service
 public class BookingServiceImpl implements BookingService {
+    private final BookingDao bookingDao;
+    private final MappingDTOEntity mappingDTOEntity;
+    private final UserDao userDao;
+
+
     @Override
     public BookingDTO saveBooking(BookingDTO bookingDTO) {
         bookingDTO.setBookingId(IDGenerator.bookingIDGen());
-        bookingDTO.setBookingDateTime(
-                bookingDTO.getBookingDateTime() == null ? DateTimeUtil.currentTime() : bookingDTO.getBookingDateTime());
-        System.out.println("Booking is: " + bookingDTO);
-        return bookingDTO;
+        bookingDTO.setBookingDateTime(bookingDTO.getBookingDateTime()==null ? DateTimeUtil.currentTime():bookingDTO.getBookingDateTime());
+        bookingDao.save(mappingDTOEntity.tobooking(bookingDTO));
     }
 
     @Override
