@@ -40,30 +40,35 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public FlightDTO getSelectedFlight(String flightId) {
-        return null;
+      var foundflight= flightDao.findById(flightId).orElseThrow(()->new DataNotFoundException("Flight Not Found"));
 
+      return mappingDTOEntity.toflightDTO(foundflight);
     }
 
     @Override
     public List<FlightDTO> getAllFlights() {
-        List<FlightDTO> flightList = List.of(
-                new FlightDTO("FLT001", "FL101", LocalDateTime.now(), LocalDateTime.now().plusHours(2), 180, 150, 5000.0, FlightStatus.AVALIABLE, "API.9d59723c-efc5-448a-bc81-cf31e2fcf83c", "KLH"),
-                new FlightDTO("FLT002", "FL102", LocalDateTime.now().plusHours(3), LocalDateTime.now().plusHours(5), 200, 180, 6000.0, FlightStatus.AVALIABLE, "API.9d59723c-efc5-448a-bc81-cf31e2fcf83c", "MLH"),
-                new FlightDTO("FLT003", "FL103", LocalDateTime.now().plusHours(6), LocalDateTime.now().plusHours(8), 150, 100, 4500.0, FlightStatus.CANCEL, "KLH", "RLH"),
-                new FlightDTO("FLT004", "FL104", LocalDateTime.now().plusHours(9), LocalDateTime.now().plusHours(11), 160, 160, 5500.0, FlightStatus.OUT_OF_SERVICE, "MLH", "API.9d59723c-efc5-448a-bc81-cf31e2fcf83c")
-        );
-        return flightList;
+              return mappingDTOEntity.getflightDTOList(flightDao.findAll());
     }
 
     @Override
     public void deleteFlight(String flightId) {
-        System.out.println("Deleted Flight: " + flightId);
+        flightDao.findById(flightId).orElseThrow(()->new DataNotFoundException("Flight Not Found"));
+
     }
 
     @Override
     public void updateFlight(String flightId, FlightDTO flightDTO) {
-        flightDTO.setFlightId(flightId);
-        System.out.println("Update Flight ID: " + flightId);
-        System.out.println("Updated Flight details: " + flightDTO);
+
+        var foundflight= flightDao.findById(flightId).orElseThrow(()->new DataNotFoundException("Flight Not Found"));
+
+        foundflight.setFlightId(FlightDTO.getflightId());
+        foundflight.setArrivalTime(FlightDTO.getArrivalTime());
+        foundflight.setDepartureTime(FlightDTO.getDeapartureTime());
+        foundflight.setTotalSeats(flightDTO.getTotalSeats());
+        foundflight.setAvaliableSeats(flightDTO.getAvaliableSeats());
+        foundflight.setBaseFare(flightDTO.getBaseFare());
+        foundflight.setStatus(flightDTO.getStatus());
+
     }
+
 }
