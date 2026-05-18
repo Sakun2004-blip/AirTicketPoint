@@ -61,7 +61,7 @@ public class MappingDTOEntity {
     public Flight toflight(FlightDTO flightDTO){
         return modelMapper.map(flightDTO, Flight.class);
     }
-    public List<BookingDTO> getflightDTOList(List<Flight> flight){
+    public List<FlightDTO> getflightDTOList(List<Flight> flight){
         return modelMapper.map(flight, new TypeToken<List<FlightDTO>>(){}.getType());
     }
 }

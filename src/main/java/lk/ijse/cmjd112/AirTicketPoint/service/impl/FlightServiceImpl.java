@@ -4,6 +4,7 @@ import lk.ijse.cmjd112.AirTicketPoint.Dao.AirportDao;
 import lk.ijse.cmjd112.AirTicketPoint.Dao.FlightDao;
 import lk.ijse.cmjd112.AirTicketPoint.dto.FlightDTO;
 import lk.ijse.cmjd112.AirTicketPoint.dto.FlightStatus;
+import lk.ijse.cmjd112.AirTicketPoint.exception.DataNotFoundException;
 import lk.ijse.cmjd112.AirTicketPoint.service.FlightService;
 import lk.ijse.cmjd112.AirTicketPoint.util.IDGenerator;
 import lk.ijse.cmjd112.AirTicketPoint.util.MappingDTOEntity;
@@ -22,28 +23,25 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public FlightDTO saveFlight(FlightDTO flightDTO) {
-        flightDTO.setFlightId(IDGenerator.flightIDGen());
+        var arrAirport = airportDao.findAirportByAirportCode(flightDTO.getArrivalAirportId())
+                .orElseThrow(() -> new DataNotFoundException("Arrival Airport not Found"));
 
-        airportDao.findById(flightDTO.getArrivalAirportId());
+        var depAirport = airportDao.findAirportByAirportCode(flightDTO.getDepartureAirportId())
+                .orElseThrow(() -> new DataNotFoundException("Departure Airport Not Found"));
+
+        var flight=mappingDTOEntity.toflight(flightDTO);
+        flightDTO.setFlightId(IDGenerator.flightIDGen());
+        flight.setFlightId(flightDTO.getFlightId());
+        flight.setArrivalAirport(arrAirport);
+        flight.setDepartureAirport(depAirport);
+        flightDao.save(flight);
         return flightDTO;
     }
 
     @Override
     public FlightDTO getSelectedFlight(String flightId) {
-        System.out.println("Flight ID is: " + flightId);
-        var flight = new FlightDTO(
-                flightId,
-                "FL123",
-                LocalDateTime.now(),
-                LocalDateTime.now().plusHours(2),
-                180,
-                150,
-                5000.0,
-                FlightStatus.AVALIABLE,
-                "API.9d59723c-efc5-448a-bc81-cf31e2fcf83c",
-                "KLH"
-        );
-        return flight;
+        return null;
+
     }
 
     @Override

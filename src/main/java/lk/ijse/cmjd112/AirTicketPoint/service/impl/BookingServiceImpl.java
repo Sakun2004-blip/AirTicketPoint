@@ -8,12 +8,14 @@ import lk.ijse.cmjd112.AirTicketPoint.service.BookingService;
 import lk.ijse.cmjd112.AirTicketPoint.util.DateTimeUtil;
 import lk.ijse.cmjd112.AirTicketPoint.util.IDGenerator;
 import lk.ijse.cmjd112.AirTicketPoint.util.MappingDTOEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BookingServiceImpl implements BookingService {
     private final BookingDao bookingDao;
     private final MappingDTOEntity mappingDTOEntity;
@@ -23,8 +25,11 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public BookingDTO saveBooking(BookingDTO bookingDTO) {
         bookingDTO.setBookingId(IDGenerator.bookingIDGen());
-        bookingDTO.setBookingDateTime(bookingDTO.getBookingDateTime()==null ? DateTimeUtil.currentTime():bookingDTO.getBookingDateTime());
+        if (bookingDTO.getBookingDate() == null) {
+            bookingDTO.setBookingDate(LocalDateTime.now());
+        }
         bookingDao.save(mappingDTOEntity.tobooking(bookingDTO));
+        return bookingDTO;
     }
 
     @Override
