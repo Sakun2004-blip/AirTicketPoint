@@ -1,5 +1,7 @@
 package lk.ijse.cmjd112.AirTicketPoint.service.impl;
 
+// cSpell:ignore ijse cmjd cmjd112
+
 import jakarta.transaction.Transactional;
 import lk.ijse.cmjd112.AirTicketPoint.Dao.AirportDao;
 import lk.ijse.cmjd112.AirTicketPoint.dto.AirportDTO;

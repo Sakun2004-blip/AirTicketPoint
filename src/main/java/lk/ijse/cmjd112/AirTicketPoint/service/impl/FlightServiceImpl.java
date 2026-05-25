@@ -58,16 +58,18 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public void updateFlight(String flightId, FlightDTO flightDTO) {
+        var foundflight = flightDao.findById(flightId)
+                .orElseThrow(() -> new DataNotFoundException("Flight Not Found"));
 
-        var foundflight= flightDao.findById(flightId).orElseThrow(()->new DataNotFoundException("Flight Not Found"));
-
-        foundflight.setFlightId(FlightDTO.getflightId());
-        foundflight.setArrivalTime(FlightDTO.getArrivalTime());
-        foundflight.setDepartureTime(FlightDTO.getDeapartureTime());
+        foundflight.setFlightId(flightDTO.getFlightId());
+        foundflight.setArrivalTime(flightDTO.getArrivalTime());
+        foundflight.setDepartureTime(flightDTO.getDepartureTime());
         foundflight.setTotalSeats(flightDTO.getTotalSeats());
         foundflight.setAvaliableSeats(flightDTO.getAvaliableSeats());
-        foundflight.setBaseFare(flightDTO.getBaseFare());
+        foundflight.setBasefare(flightDTO.getBasefare());
         foundflight.setStatus(flightDTO.getStatus());
+
+        flightDao.save(foundflight);
 
     }
 

@@ -1,5 +1,7 @@
 package lk.ijse.cmjd112.AirTicketPoint.controller;
 
+// cSpell:ignore ijse cmjd cmjd112
+
 import lk.ijse.cmjd112.AirTicketPoint.dto.FlightDTO;
 import lk.ijse.cmjd112.AirTicketPoint.service.FlightService;
 import lombok.RequiredArgsConstructor;
