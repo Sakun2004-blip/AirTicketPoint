@@ -1,5 +1,7 @@
 package lk.ijse.cmjd112.AirTicketPoint.entities;
 
+// cSpell:ignore ijse cmjd cmjd112 avaliable basefare
+
 import jakarta.persistence.*;
 import lk.ijse.cmjd112.AirTicketPoint.dto.FlightStatus;
 import lombok.AllArgsConstructor;
