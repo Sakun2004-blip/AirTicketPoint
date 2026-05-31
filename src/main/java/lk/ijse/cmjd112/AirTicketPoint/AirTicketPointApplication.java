@@ -1,4 +1,5 @@
 package lk.ijse.cmjd112.AirTicketPoint;
+// cSpell:ignore ijse cmjd cmjd112
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;

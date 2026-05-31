@@ -1,4 +1,5 @@
 package lk.ijse.cmjd112.AirTicketPoint;
+// cSpell:ignore ijse cmjd cmjd112 Healthwith Gallwe Bujdhfdj
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

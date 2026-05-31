@@ -1,4 +1,5 @@
 package lk.ijse.cmjd112.AirTicketPoint.entities;
+// cSpell:ignore ijse cmjd cmjd112
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

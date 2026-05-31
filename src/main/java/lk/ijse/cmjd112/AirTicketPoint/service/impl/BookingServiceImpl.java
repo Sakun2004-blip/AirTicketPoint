@@ -1,4 +1,5 @@
 package lk.ijse.cmjd112.AirTicketPoint.service.impl;
+// cSpell:ignore ijse cmjd cmjd112
 
 import lk.ijse.cmjd112.AirTicketPoint.Dao.BookingDao;
 import lk.ijse.cmjd112.AirTicketPoint.dto.BookingDTO;

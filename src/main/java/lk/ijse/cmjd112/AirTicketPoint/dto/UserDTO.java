@@ -1,4 +1,5 @@
 package lk.ijse.cmjd112.AirTicketPoint.dto;
+// cSpell:ignore ijse cmjd cmjd112
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,13 +13,13 @@ import java.io.Serializable;
 public class UserDTO implements Serializable {
     private String userId;
     private String firstName;
-    private String lastname;
+    private String lastName;
     private String email;
     private String password;
     private Role role;
 
 
-    public void setuserId(String s) {
-        this.userId=s;
+    public void setUserId(String s) {
+        this.userId = s;
     }
 }
