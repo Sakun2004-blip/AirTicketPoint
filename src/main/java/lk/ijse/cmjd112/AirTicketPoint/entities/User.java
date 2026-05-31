@@ -1,11 +1,11 @@
 package lk.ijse.cmjd112.AirTicketPoint.entities;
+// cSpell:ignore ijse cmjd cmjd112
 
 import jakarta.persistence.*;
 import lk.ijse.cmjd112.AirTicketPoint.dto.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.engine.internal.Cascade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,7 +18,7 @@ public class User implements Serializable {
     @Id
     private String userId;
     private String firstName;
-    private String lastname;
+    private String lastName;
     @Column(nullable = false,unique = true)
     private String email;
     private String password;

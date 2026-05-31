@@ -1,7 +1,15 @@
 package lk.ijse.cmjd112.AirTicketPoint.dto;
+// cSpell:ignore ijse cmjd cmjd112
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Passenger implements Serializable {
     private String passengerId;
     private String firstName;

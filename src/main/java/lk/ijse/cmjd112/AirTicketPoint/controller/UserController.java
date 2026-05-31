@@ -1,9 +1,8 @@
 package lk.ijse.cmjd112.AirTicketPoint.controller;
+// cSpell:ignore ijse cmjd cmjd112
 
-import lk.ijse.cmjd112.AirTicketPoint.dto.Role;
 import lk.ijse.cmjd112.AirTicketPoint.dto.UserDTO;
 import lk.ijse.cmjd112.AirTicketPoint.service.UserService;
-import lk.ijse.cmjd112.AirTicketPoint.util.IDGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
