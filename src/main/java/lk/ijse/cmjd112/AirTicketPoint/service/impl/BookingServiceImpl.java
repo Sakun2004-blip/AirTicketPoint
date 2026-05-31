@@ -1,11 +1,9 @@
 package lk.ijse.cmjd112.AirTicketPoint.service.impl;
 
 import lk.ijse.cmjd112.AirTicketPoint.Dao.BookingDao;
-import lk.ijse.cmjd112.AirTicketPoint.Dao.UserDao;
 import lk.ijse.cmjd112.AirTicketPoint.dto.BookingDTO;
 import lk.ijse.cmjd112.AirTicketPoint.dto.BookingStatus;
 import lk.ijse.cmjd112.AirTicketPoint.service.BookingService;
-import lk.ijse.cmjd112.AirTicketPoint.util.DateTimeUtil;
 import lk.ijse.cmjd112.AirTicketPoint.util.IDGenerator;
 import lk.ijse.cmjd112.AirTicketPoint.util.MappingDTOEntity;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +17,6 @@ import java.util.List;
 public class BookingServiceImpl implements BookingService {
     private final BookingDao bookingDao;
     private final MappingDTOEntity mappingDTOEntity;
-    private final UserDao userDao;
 
 
     @Override
