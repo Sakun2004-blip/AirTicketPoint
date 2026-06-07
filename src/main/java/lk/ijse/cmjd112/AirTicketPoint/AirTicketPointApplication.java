@@ -12,11 +12,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class AirTicketPointApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(AirTicketPointApplication.class, args);
 	}
+
 	@Bean
-	public ModelMapper mapper(){
+	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
-
 }

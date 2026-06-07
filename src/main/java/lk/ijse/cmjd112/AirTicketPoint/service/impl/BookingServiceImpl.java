@@ -23,8 +23,8 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public BookingDTO saveBooking(BookingDTO bookingDTO) {
         bookingDTO.setBookingId(IDGenerator.bookingIDGen());
-        if (bookingDTO.getBookingDate() == null) {
-            bookingDTO.setBookingDate(LocalDateTime.now());
+        if (bookingDTO.getBookingDateTime() == null) {
+            bookingDTO.setBookingDateTime(LocalDateTime.now());
         }
         bookingDao.save(mappingDTOEntity.tobooking(bookingDTO));
         return bookingDTO;
